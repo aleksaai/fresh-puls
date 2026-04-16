@@ -39,9 +39,10 @@ const STEPS = [
 ]
 
 export function VoiceAgentsPage() {
-  const { status, startCall, endCall } = useWebCall()
+  const { status, errorMsg, startCall, endCall, reset } = useWebCall()
   const isActive = status === "active"
   const isConnecting = status === "connecting"
+  const isError = status === "error"
 
   return (
     <>
@@ -305,8 +306,17 @@ export function VoiceAgentsPage() {
                   </button>
                 )}
 
-                <p className="mt-4 text-sm text-foreground-subtle">{VOICE_AGENT.phoneFormatted}</p>
-                <p className="text-xs text-foreground-subtle/60 mt-1">{VOICE_AGENT.available} verfügbar</p>
+                {isError && (
+                  <p className="mt-4 text-sm text-red-500 cursor-pointer" onClick={reset}>
+                    {errorMsg || "Fehler"} — Erneut versuchen
+                  </p>
+                )}
+                {!isError && (
+                  <>
+                    <p className="mt-4 text-sm text-foreground-subtle">{VOICE_AGENT.phoneFormatted}</p>
+                    <p className="text-xs text-foreground-subtle/60 mt-1">{VOICE_AGENT.available} verfügbar</p>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>
