@@ -206,7 +206,7 @@ export function CallServicePage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="glass-card rounded-3xl p-12 sm:p-16 text-center max-w-3xl mx-auto"
+            className="glass-card rounded-3xl p-8 sm:p-12 lg:p-16 text-center max-w-3xl mx-auto"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-4">
               Bereit, deine Pipeline zu{" "}

@@ -58,7 +58,7 @@ export function Services() {
                   {service.description}
                 </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {service.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />

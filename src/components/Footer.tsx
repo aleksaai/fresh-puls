@@ -24,10 +24,10 @@ export function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-5">
+          <div className="sm:col-span-2 md:col-span-1 text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start gap-2.5 mb-5">
               <div className="h-9 w-9 rounded-xl bg-brand-500 flex items-center justify-center shadow-[0_2px_8px_rgba(38,92,242,0.2)]">
                 <Phone className="w-4.5 h-4.5 text-white" />
               </div>
@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Link columns */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
-            <div key={title}>
+            <div key={title} className="text-center sm:text-left">
               <h4 className="text-sm font-semibold text-foreground mb-5">{title}</h4>
               <ul className="space-y-3">
                 {links.map((link) => (
@@ -65,7 +65,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-14 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-14 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <p className="text-xs text-foreground-subtle">
             &copy; {new Date().getFullYear()} {COMPANY.name}. Alle Rechte vorbehalten.
           </p>

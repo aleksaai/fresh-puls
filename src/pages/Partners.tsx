@@ -142,7 +142,7 @@ export function PartnersPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="glass-card rounded-3xl p-12 sm:p-16 text-center"
+            className="glass-card rounded-3xl p-8 sm:p-12 lg:p-16 text-center"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               Werden Sie Partner

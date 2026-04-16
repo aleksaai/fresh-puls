@@ -235,7 +235,7 @@ export function VoiceAgentsPage() {
                 ohne Wartezeit.
               </p>
 
-              <div className="mt-8 grid grid-cols-2 gap-4">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {["24/7 erreichbar", "Natürliche Sprache", "Sofortige Antworten", "Termin-Buchung"].map((label) => (
                   <div key={label} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0" />
@@ -251,7 +251,7 @@ export function VoiceAgentsPage() {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="flex justify-center"
             >
-              <div className="glass-card rounded-3xl p-10 w-full max-w-sm text-center">
+              <div className="glass-card rounded-3xl p-6 sm:p-10 w-full max-w-sm text-center">
                 <div className="relative mx-auto w-20 h-20 mb-6">
                   <div className={`absolute inset-[-8px] rounded-full ${isActive ? "bg-green-500/20 animate-[pulse-glow_1.5s_ease-in-out_infinite]" : "bg-brand-500/10 animate-[pulse-glow_3s_ease-in-out_infinite]"}`} />
                   <div className={`relative w-20 h-20 rounded-full flex items-center justify-center ${isActive ? "bg-gradient-to-br from-green-500 to-green-700" : "bg-gradient-to-br from-brand-500 to-brand-700"}`}>
@@ -332,7 +332,7 @@ export function VoiceAgentsPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="glass-card rounded-3xl p-12 sm:p-16 text-center max-w-3xl mx-auto"
+            className="glass-card rounded-3xl p-8 sm:p-12 lg:p-16 text-center max-w-3xl mx-auto"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight mb-4">
               Bereit für deinen eigenen

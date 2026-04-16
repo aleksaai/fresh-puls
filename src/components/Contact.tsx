@@ -15,7 +15,7 @@ function DecorativeCalendar() {
   const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate()
 
   return (
-    <div className="glass-card rounded-3xl p-6 w-full">
+    <div className="glass-card rounded-3xl p-4 sm:p-6 w-full">
       {/* Month header */}
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-semibold text-foreground text-lg capitalize">

@@ -30,10 +30,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.08]"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.08]"
           >
             Marketing, das sich{" "}
-            <span className="heading-accent text-6xl sm:text-7xl lg:text-8xl">
+            <span className="heading-accent text-5xl sm:text-6xl lg:text-8xl">
               auszahlt
             </span>
             <span className="text-brand-500">.</span>
