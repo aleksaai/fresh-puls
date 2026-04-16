@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "dist"
 
+[[edge_functions]]
+  function = "create-web-call"
+  path = "/api/create-web-call"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

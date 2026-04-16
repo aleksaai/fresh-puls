@@ -1,8 +1,13 @@
 import { motion } from "motion/react"
-import { Phone } from "lucide-react"
+import { Phone, PhoneOff, Loader2 } from "lucide-react"
 import { VOICE_AGENT } from "../config/voice-agent"
+import { useWebCall } from "../hooks/useWebCall"
 
 export function VoiceDemo() {
+  const { status, startCall, endCall } = useWebCall()
+  const isActive = status === "active"
+  const isConnecting = status === "connecting"
+
   return (
     <section id="voice-demo" className="relative py-24 sm:py-32 overflow-hidden">
       <div className="glow-orb w-[600px] h-[600px] bg-brand-500/[0.06] top-[10%] left-[-5%]" />
@@ -55,35 +60,58 @@ export function VoiceDemo() {
           >
             <div className="glass-card rounded-3xl p-10 w-full max-w-sm text-center">
               <div className="relative mx-auto w-20 h-20 mb-6">
-                <div className="absolute inset-[-8px] rounded-full bg-brand-500/10 animate-[pulse-glow_3s_ease-in-out_infinite]" />
-                <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+                <div className={`absolute inset-[-8px] rounded-full ${isActive ? "bg-green-500/20 animate-[pulse-glow_1.5s_ease-in-out_infinite]" : "bg-brand-500/10 animate-[pulse-glow_3s_ease-in-out_infinite]"}`} />
+                <div className={`relative w-20 h-20 rounded-full flex items-center justify-center ${isActive ? "bg-gradient-to-br from-green-500 to-green-700" : "bg-gradient-to-br from-brand-500 to-brand-700"}`}>
                   <Phone className="w-8 h-8 text-white" />
                 </div>
               </div>
 
               <h3 className="text-xl font-bold text-foreground mb-1">{VOICE_AGENT.name}</h3>
-              <p className="text-sm text-foreground-subtle mb-8">KI-Sprachassistentin</p>
+              <p className="text-sm text-foreground-subtle mb-8">
+                {isActive ? "Gespräch läuft..." : isConnecting ? "Verbinde..." : "KI-Sprachassistentin"}
+              </p>
 
               <div className="flex items-center justify-center gap-[3px] h-10 mb-8">
                 {Array.from({ length: 24 }).map((_, i) => (
                   <div
                     key={i}
-                    className="w-[3px] bg-brand-500/30 rounded-full"
+                    className={`w-[3px] rounded-full ${isActive ? "bg-green-500/50" : "bg-brand-500/30"}`}
                     style={{
                       height: "100%",
-                      animation: `waveform ${0.8 + Math.random() * 0.6}s ease-in-out ${i * 0.05}s infinite`,
+                      animation: isActive
+                        ? `waveform ${0.4 + Math.random() * 0.4}s ease-in-out ${i * 0.03}s infinite`
+                        : `waveform ${0.8 + Math.random() * 0.6}s ease-in-out ${i * 0.05}s infinite`,
                     }}
                   />
                 ))}
               </div>
 
-              <a
-                href={`tel:${VOICE_AGENT.phone}`}
-                className="btn-glass-accent flex items-center justify-center gap-3 rounded-2xl py-4 text-lg font-semibold w-full"
-              >
-                <Phone className="w-5 h-5" />
-                Jetzt anrufen
-              </a>
+              {isActive || isConnecting ? (
+                <button
+                  onClick={endCall}
+                  className="flex items-center justify-center gap-3 rounded-2xl py-4 text-lg font-semibold w-full bg-red-500 text-white hover:bg-red-600 transition-colors cursor-pointer"
+                >
+                  {isConnecting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Verbinde...
+                    </>
+                  ) : (
+                    <>
+                      <PhoneOff className="w-5 h-5" />
+                      Auflegen
+                    </>
+                  )}
+                </button>
+              ) : (
+                <button
+                  onClick={startCall}
+                  className="btn-glass-accent flex items-center justify-center gap-3 rounded-2xl py-4 text-lg font-semibold w-full cursor-pointer"
+                >
+                  <Phone className="w-5 h-5" />
+                  Jetzt anrufen
+                </button>
+              )}
 
               <p className="mt-4 text-sm text-foreground-subtle">{VOICE_AGENT.phoneFormatted}</p>
               <p className="text-xs text-foreground-subtle/60 mt-1">{VOICE_AGENT.available} verfügbar</p>
