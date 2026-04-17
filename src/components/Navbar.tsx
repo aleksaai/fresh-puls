@@ -116,15 +116,13 @@ export function Navbar() {
                 <Phone className="w-4 h-4" />
                 {VOICE_AGENT.phoneFormatted}
               </a>
-              <a
-                href={COMPANY.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/#contact"
                 className="btn-glass-accent inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold"
               >
                 Termin buchen
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
 
             {/* Mobile toggle */}
@@ -182,15 +180,14 @@ export function Navbar() {
                       </Link>
                     )
                   )}
-                  <a
-                    href={COMPANY.bookingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/#contact"
+                    onClick={() => setMobileOpen(false)}
                     className="btn-glass-accent flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold mt-3"
                   >
                     Termin buchen
                     <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             )}

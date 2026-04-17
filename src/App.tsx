@@ -15,7 +15,7 @@ import { DatenschutzPage } from "./pages/Datenschutz"
 
 function AppShell() {
   const lenisRef = useRef<Lenis | null>(null)
-  const { pathname } = useLocation()
+  const { pathname, hash, key } = useLocation()
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -35,12 +35,31 @@ function AppShell() {
   }, [])
 
   useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1)
+      // Two-pass: first scroll quickly to get close, then re-scroll once layout
+      // settles (motion-triggered children can grow the page after mount).
+      const scrollToEl = () => {
+        const el = document.getElementById(id)
+        if (el && lenisRef.current) {
+          lenisRef.current.scrollTo(el, { offset: -80 })
+        } else if (el) {
+          el.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+      const t1 = setTimeout(scrollToEl, 120)
+      const t2 = setTimeout(scrollToEl, 600)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+      }
+    }
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true })
     } else {
       window.scrollTo(0, 0)
     }
-  }, [pathname])
+  }, [pathname, hash, key])
 
   return (
     <div className="min-h-screen bg-surface">

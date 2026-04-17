@@ -6,7 +6,7 @@ export const COMPANY = {
   phone: "+49 15563 035374",
   address: "Hainbrunnenstr. 31, 91301 Forchheim",
   owner: "Thomas Luderer",
-  bookingUrl: "https://fp-solution.de/#bookCall",
+  bookingUrl: "/#contact",
 } as const
 
 export const SERVICES = [
