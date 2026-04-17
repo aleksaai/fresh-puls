@@ -1,77 +1,27 @@
+import { useEffect } from "react"
 import { motion } from "motion/react"
 import { Mail, Phone, MapPin } from "lucide-react"
+import Cal, { getCalApi } from "@calcom/embed-react"
 import { COMPANY } from "../config/content"
 
-const CALENDAR_DAYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-const BOOKED_DAYS = [3, 7, 11, 15, 19, 22, 26]
-const AVAILABLE_DAYS = [4, 8, 10, 12, 16, 17, 18, 23, 24, 25, 29, 30]
-
-function DecorativeCalendar() {
-  const today = new Date()
-  const month = today.toLocaleString("de-DE", { month: "long" })
-  const year = today.getFullYear()
-  const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay()
-  const offset = firstDay === 0 ? 6 : firstDay - 1
-  const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate()
+function BookingCalendar() {
+  useEffect(() => {
+    ;(async () => {
+      const cal = await getCalApi({ namespace: "beratungstermin" })
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" })
+    })()
+  }, [])
 
   return (
-    <div className="glass-card rounded-3xl p-4 sm:p-6 w-full">
-      {/* Month header */}
-      <div className="flex items-center justify-between mb-4">
-        <h4 className="font-semibold text-foreground text-lg capitalize">
-          {month} {year}
-        </h4>
-        <div className="flex gap-1">
-          <div className="w-8 h-8 rounded-lg bg-black/[0.03] flex items-center justify-center text-foreground-subtle text-sm">&lsaquo;</div>
-          <div className="w-8 h-8 rounded-lg bg-black/[0.03] flex items-center justify-center text-foreground-subtle text-sm">&rsaquo;</div>
-        </div>
+    <div className="glass-card rounded-3xl p-2 sm:p-4 w-full overflow-hidden">
+      <div className="rounded-2xl overflow-hidden h-[640px] sm:h-[720px]">
+        <Cal
+          namespace="beratungstermin"
+          calLink="thomas-luderer-h07mqh/beratungstermin"
+          style={{ width: "100%", height: "100%", overflow: "scroll" }}
+          config={{ layout: "month_view" }}
+        />
       </div>
-
-      {/* Day names */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
-        {CALENDAR_DAYS.map((d) => (
-          <div key={d} className="text-center text-xs font-medium text-foreground-subtle py-1">{d}</div>
-        ))}
-      </div>
-
-      {/* Day grid */}
-      <div className="grid grid-cols-7 gap-1">
-        {Array.from({ length: offset }).map((_, i) => (
-          <div key={`e-${i}`} className="aspect-square" />
-        ))}
-        {Array.from({ length: daysInMonth }).map((_, i) => {
-          const day = i + 1
-          const isBooked = BOOKED_DAYS.includes(day)
-          const isAvailable = AVAILABLE_DAYS.includes(day)
-          return (
-            <div
-              key={day}
-              className={`aspect-square rounded-lg flex items-center justify-center text-sm font-medium transition-colors ${
-                isBooked
-                  ? "bg-brand-500 text-white"
-                  : isAvailable
-                  ? "bg-brand-500/[0.08] text-brand-600"
-                  : "text-foreground-subtle hover:bg-black/[0.03]"
-              }`}
-            >
-              {day}
-            </div>
-          )
-        })}
-      </div>
-
-      {/* Legend */}
-      <div className="flex items-center gap-6 mt-4 pt-4 border-t border-border">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-brand-500" />
-          <span className="text-xs text-foreground-muted">Gebucht</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-brand-500/[0.15]" />
-          <span className="text-xs text-foreground-muted">Verfügbar</span>
-        </div>
-      </div>
-
     </div>
   )
 }
@@ -138,13 +88,13 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Right — Decorative Calendar */}
+          {/* Right — Cal.com Booking */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <DecorativeCalendar />
+            <BookingCalendar />
           </motion.div>
         </div>
       </div>
