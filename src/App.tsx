@@ -7,6 +7,7 @@ import { Home } from "./pages/Home"
 import { CallServicePage } from "./pages/CallService"
 import { MarketingPage } from "./pages/Marketing"
 import { VoiceAgentsPage } from "./pages/VoiceAgents"
+import { StimmenPage } from "./pages/Stimmen"
 import { AboutPage } from "./pages/About"
 import { PartnersPage } from "./pages/Partners"
 import { FAQPage } from "./pages/FAQ"
@@ -69,6 +70,7 @@ function AppShell() {
         <Route path="/b2b-call-service" element={<CallServicePage />} />
         <Route path="/b2b-marketing" element={<MarketingPage />} />
         <Route path="/ki-voice-agents" element={<VoiceAgentsPage />} />
+        <Route path="/stimmen" element={<StimmenPage />} />
         <Route path="/ueber-uns" element={<AboutPage />} />
         <Route path="/partner" element={<PartnersPage />} />
         <Route path="/faq" element={<FAQPage />} />

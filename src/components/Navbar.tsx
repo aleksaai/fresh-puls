@@ -9,6 +9,7 @@ const SERVICE_LINKS = [
   { label: "B2B Call Service", href: "/b2b-call-service" },
   { label: "B2B Marketing", href: "/b2b-marketing" },
   { label: "KI Voice Agents", href: "/ki-voice-agents" },
+  { label: "Stimmen-Galerie", href: "/stimmen" },
 ]
 
 const NAV_LINKS = [
