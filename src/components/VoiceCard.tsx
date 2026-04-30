@@ -21,6 +21,7 @@ export function VoiceCard({ voice, isActive, onPlay, onStop, index }: VoiceCardP
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const isPending = !voice.audioUrl
   const initial = voice.name.charAt(0).toUpperCase()
