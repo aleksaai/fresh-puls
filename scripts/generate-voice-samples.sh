@@ -24,8 +24,7 @@ if [ -z "$ELEVENLABS_API_KEY" ]; then
 fi
 
 SAMPLE_TEXT="Hallo, ich bin Ihr persönlicher KI-Assistent und freue mich darauf, Sie heute bei Ihrem Anliegen zu unterstützen."
-# eleven_turbo_v2_5 = matches what Patricia + Kati use in production for German
-MODEL_ID="eleven_turbo_v2_5"
+MODEL_ID="eleven_v3"
 OUTPUT_DIR="public/audio/voices"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
